@@ -53,9 +53,8 @@
   },
   {
    "fieldname": "company",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "Company",
-   "options": "Company",
    "reqd": 1
   },
   {
@@ -255,7 +254,7 @@
  "icon": "fa fa-bookmark",
  "idx": 1,
  "links": [],
- "modified": "2024-04-01 11:32:47.167232",
+ "modified": "2024-08-02 13:33:36.850691",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Job Opening",
