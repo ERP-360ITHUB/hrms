@@ -212,9 +212,8 @@
   },
   {
    "fieldname": "location",
-   "fieldtype": "Link",
-   "label": "Location",
-   "options": "Branch"
+   "fieldtype": "Data",
+   "label": "Location"
   },
   {
    "fieldname": "section_break_nngy",
@@ -254,7 +253,7 @@
  "icon": "fa fa-bookmark",
  "idx": 1,
  "links": [],
- "modified": "2024-08-02 13:33:36.850691",
+ "modified": "2024-08-03 11:55:30.684581",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Job Opening",
