@@ -59,7 +59,6 @@
    "fieldtype": "Link",
    "label": "Shift",
    "options": "Shift Type",
-   "read_only": 1,
    "search_index": 1
   },
   {
@@ -96,25 +95,21 @@
   {
    "fieldname": "shift_start",
    "fieldtype": "Datetime",
-   "hidden": 1,
    "label": "Shift Start"
   },
   {
    "fieldname": "shift_end",
    "fieldtype": "Datetime",
-   "hidden": 1,
    "label": "Shift End"
   },
   {
    "fieldname": "shift_actual_start",
    "fieldtype": "Datetime",
-   "hidden": 1,
    "label": "Shift Actual Start"
   },
   {
    "fieldname": "shift_actual_end",
    "fieldtype": "Datetime",
-   "hidden": 1,
    "label": "Shift Actual End"
   },
   {
@@ -141,8 +136,7 @@
    "fieldname": "latitude",
    "fieldtype": "Float",
    "label": "Latitude",
-   "precision": "7",
-   "read_only": 1
+   "precision": "7"
   },
   {
    "fieldname": "longitude",
@@ -167,7 +161,7 @@
   }
  ],
  "links": [],
- "modified": "2024-05-29 21:19:11.550766",
+ "modified": "2024-08-06 09:58:50.684853",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Employee Checkin",
