@@ -286,9 +286,30 @@ class ShiftType(Document):
 			return False
 		return True
 
-
+# @frappe.whitelist()
 def process_auto_attendance_for_all_shifts():
 	shift_list = frappe.get_all("Shift Type", filters={"enable_auto_attendance": "1"}, pluck="name")
 	for shift in shift_list:
 		doc = frappe.get_cached_doc("Shift Type", shift)
 		doc.process_auto_attendance()
+
+
+
+
+
+# By Mohan
+
+import frappe
+from frappe import _
+
+@frappe.whitelist()
+def process_auto_attendance_for_all_active_shifts():
+    try:
+        shift_list = frappe.get_all("Shift Type", filters={"enable_auto_attendance": "1"}, pluck="name")
+        for shift in shift_list:
+            doc = frappe.get_cached_doc("Shift Type", shift)
+            doc.process_auto_attendance()
+        return {"status": "success", "message": "Processed all shifts successfully."}
+    except Exception as e:
+        frappe.log_error(frappe.get_traceback(), 'Process Auto Attendance Error')
+        return {"status": "error", "message": str(e)}
