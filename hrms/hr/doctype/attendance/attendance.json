@@ -145,6 +145,7 @@
    "read_only": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "shift",
    "fieldtype": "Link",
    "label": "Shift",
@@ -207,7 +208,7 @@
  "idx": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-04-05 20:55:02.905452",
+ "modified": "2024-10-07 18:14:38.786762",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Attendance",
