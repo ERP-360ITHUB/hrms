@@ -31,8 +31,24 @@ class EmployeeAdvance(Document):
 		self.set_status()
 		self.set_pending_amount()
 
+	def before_submit(self):
+		if not self.get("advance_account"):
+			default_advance_account = frappe.db.get_value(
+				"Company", self.company, "default_employee_advance_account"
+			)
+			if default_advance_account:
+				self.advance_account = default_advance_account
+			else:
+				frappe.throw(
+					_(
+						'Advance Account is mandatory. Please set the <a href="/app/company/{0}#default_employee_advance_account" target="_blank">Default Employee Advance Account</a> in the Company record {0} and submit this document.'
+					).format(self.company),
+					title=_("Missing Advance Account"),
+				)
+
 	def on_cancel(self):
-		self.ignore_linked_doctypes = "GL Entry"
+		self.ignore_linked_doctypes = ("GL Entry", "Payment Ledger Entry")
+		self.check_linked_payment_entry()
 		self.set_status(update=True)
 
 	def on_update(self):
@@ -174,6 +190,16 @@ class EmployeeAdvance(Document):
 				& (Advance.status == "Unpaid")
 			)
 		).run()[0][0] or 0.0
+
+	def check_linked_payment_entry(self):
+		from erpnext.accounts.utils import (
+			remove_ref_doc_link_from_pe,
+			update_accounting_ledgers_after_reference_removal,
+		)
+
+		if frappe.db.get_single_value("HR Settings", "unlink_payment_on_cancellation_of_employee_advance"):
+			remove_ref_doc_link_from_pe(self.doctype, self.name)
+			update_accounting_ledgers_after_reference_removal(self.doctype, self.name)
 
 
 @frappe.whitelist()
